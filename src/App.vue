@@ -1,15 +1,21 @@
 <template>
-  <div id="app"></div>
+  <div id="app">
+    <CountryList />
+  </div>
 </template>
 
 <script>
+import CountryList from "./components/CountryList";
 export default {
   name: "App",
-  components: {},
+  components: { CountryList },
 };
 </script>
 
 <style lang="scss">
-#app {
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 </style>
