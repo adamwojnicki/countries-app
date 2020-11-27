@@ -1,5 +1,6 @@
 <template>
   <CountryCard />
+  <CountryCard />
 </template>
 
 <script>
