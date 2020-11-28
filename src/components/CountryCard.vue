@@ -16,7 +16,7 @@
 
 <script>
 export default {
-  name: "CountryCard",
+  name: "CountryCard"
 };
 </script>
 

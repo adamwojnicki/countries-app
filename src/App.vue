@@ -8,7 +8,7 @@
 import CountryList from "./components/CountryList";
 export default {
   name: "App",
-  components: { CountryList },
+  components: { CountryList }
 };
 </script>
 

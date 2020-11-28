@@ -10,8 +10,8 @@ import CountryCard from "./CountryCard";
 export default {
   name: "CountryList",
   components: {
-    CountryCard,
-  },
+    CountryCard
+  }
 };
 </script>
 
