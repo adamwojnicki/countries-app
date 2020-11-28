@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Header />
+    <Header title="Country App" />
     <CountryList />
   </div>
 </template>
