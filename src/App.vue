@@ -13,8 +13,18 @@ export default {
   components: { Header, CountryList },
   data() {
     return {
-      countries: ["Italy", "Greece", "aaa"]
+      countries: null
     };
+  },
+  methods: {
+    async fetchCountries() {
+      const resp = await fetch("https://restcountries.eu/rest/v2/all");
+      const data = await resp.json();
+      this.countries = data;
+    }
+  },
+  created() {
+    this.fetchCountries();
   }
 };
 </script>

@@ -1,15 +1,19 @@
 <template>
   <div class="country-card">
     <figure class="country-card__flag">
-      <img src="https://restcountries.eu/data/ita.svg" alt="Italy" />
+      <img :src="this.country.flag" :alt="this.country.name + ' flag'" />
     </figure>
     <div class="country-card__info">
-      <h3 class="country-card__headline">{{ this.country }}</h3>
+      <h3 class="country-card__headline">{{ this.country.name }}</h3>
       <p class="country-card__detail">
-        <strong>Population:</strong> 60,665,551
+        <strong>Population:</strong> {{ this.country.population }}
       </p>
-      <p class="country-card__detail"><strong>Region:</strong> Europe</p>
-      <p class="country-card__detail"><strong>Capital:</strong> Rome</p>
+      <p class="country-card__detail">
+        <strong>Region:</strong> {{ this.country.region }}
+      </p>
+      <p class="country-card__detail">
+        <strong>Capital:</strong> {{ this.country.capital }}
+      </p>
     </div>
   </div>
 </template>
