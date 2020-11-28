@@ -5,6 +5,7 @@
       type="text"
       placeholder="Search for countries"
       v-model="searchInput"
+      @keyup="this.onSearch"
     />
   </div>
 </template>
@@ -16,6 +17,11 @@ export default {
     return {
       searchInput: ""
     };
+  },
+  methods: {
+    onSearch() {
+      this.$emit("on-search", this.searchInput);
+    }
   }
 };
 </script>

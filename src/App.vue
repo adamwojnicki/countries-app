@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <Header />
-    <SearchBar />
-    <CountryList :countries="this.countries" />
+    <SearchBar @on-search="handleSearch" />
+    <CountryList :countries="this.filteredCountries" />
   </div>
 </template>
 
@@ -15,7 +15,8 @@ export default {
   components: { Header, CountryList, SearchBar },
   data() {
     return {
-      countries: null
+      countries: null,
+      filteredCountries: null
     };
   },
   methods: {
@@ -23,6 +24,12 @@ export default {
       const resp = await fetch("https://restcountries.eu/rest/v2/all");
       const data = await resp.json();
       this.countries = data;
+    },
+    handleSearch(searchInput) {
+      console.log(searchInput);
+      this.filteredCountries = this.countries.filter((country) =>
+        country.name.includes(searchInput)
+      );
     }
   },
   created() {
