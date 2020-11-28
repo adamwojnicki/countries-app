@@ -1,7 +1,10 @@
 <template>
   <div class="country-list">
-    <CountryCard />
-    <CountryCard />
+    <CountryCard
+      v-for="country in countries"
+      :key="country"
+      :country="country"
+    />
   </div>
 </template>
 
@@ -9,6 +12,7 @@
 import CountryCard from "./CountryCard";
 export default {
   name: "CountryList",
+  props: ["countries"],
   components: {
     CountryCard
   }

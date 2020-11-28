@@ -4,7 +4,7 @@
       <img src="https://restcountries.eu/data/ita.svg" alt="Italy" />
     </figure>
     <div class="country-card__info">
-      <h3 class="country-card__headline">Italy</h3>
+      <h3 class="country-card__headline">{{ this.country }}</h3>
       <p class="country-card__detail">
         <strong>Population:</strong> 60,665,551
       </p>
@@ -16,7 +16,8 @@
 
 <script>
 export default {
-  name: "CountryCard"
+  name: "CountryCard",
+  props: ["country"]
 };
 </script>
 

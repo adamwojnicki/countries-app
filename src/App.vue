@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <Header title="Country App" />
-    <CountryList />
+    <Header />
+    <CountryList :countries="this.countries" />
   </div>
 </template>
 
@@ -10,7 +10,12 @@ import CountryList from "./components/CountryList";
 import Header from "./components/Header";
 export default {
   name: "App",
-  components: { Header, CountryList }
+  components: { Header, CountryList },
+  data() {
+    return {
+      countries: ["Italy", "Greece", "aaa"]
+    };
+  }
 };
 </script>
 
@@ -19,6 +24,7 @@ export default {
 :root {
   font-size: 10px;
   --sans-serif: "Poppins", Arial, Helvetica, sans-serif;
+  --bg-color: #f4f4f4;
 }
 * {
   margin: 0;
@@ -27,6 +33,6 @@ export default {
 }
 body {
   font-family: var(--sans-serif);
-  background: #f4f4f4;
+  background: var(--bg-color);
 }
 </style>
