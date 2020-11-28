@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <Header />
+    <SearchBar />
     <CountryList :countries="this.countries" />
   </div>
 </template>
@@ -8,9 +9,10 @@
 <script>
 import CountryList from "./components/CountryList";
 import Header from "./components/Header";
+import SearchBar from "./components/SearchBar";
 export default {
   name: "App",
-  components: { Header, CountryList },
+  components: { Header, CountryList, SearchBar },
   data() {
     return {
       countries: null
