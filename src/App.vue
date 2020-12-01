@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="app" :class="theme === 'dark' ? 'dark' : 'light'">
     <Header />
     <SearchBar
       @on-search="this.handleSearch"
@@ -31,7 +31,8 @@ export default {
       search: "",
       filter: "All",
       error: null,
-      loading: true
+      loading: true,
+      theme: "dark"
     };
   },
   methods: {
@@ -78,15 +79,23 @@ export default {
 :root {
   font-size: 10px;
   --sans-serif: "Poppins", Arial, Helvetica, sans-serif;
-  --bg-color: #f4f4f4;
+  --color-light: #f4f4f4;
+  --color-dark: #232323;
 }
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-body {
+.app {
   font-family: var(--sans-serif);
-  background: var(--bg-color);
+}
+.app.light {
+  background: var(--color-light);
+  color: var(--color-dark);
+}
+.app.dark {
+  background: var(--color-dark);
+  color: var(--color-light);
 }
 </style>
