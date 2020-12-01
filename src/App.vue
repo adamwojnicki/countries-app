@@ -29,6 +29,7 @@ export default {
       countries: [],
       regions: [],
       search: "",
+      filter: "All",
       error: null,
       loading: true
     };
@@ -49,17 +50,19 @@ export default {
     handleSearch(searchInput) {
       this.search = searchInput;
     },
-    handleFilter(filter) {
-      console.log(filter);
+    handleFilter(filterInput) {
+      this.filter = filterInput;
     }
   },
   computed: {
     filteredCountries() {
-      if (this.search === "") {
+      if (this.search === "" && this.filter === "All") {
         return this.countries;
       } else {
-        return this.countries.filter(country =>
-          country.name.toLowerCase().includes(this.search.toLowerCase())
+        return this.countries.filter(
+          country =>
+            country.name.toLowerCase().includes(this.search.toLowerCase()) &&
+            country.region === this.filter
         );
       }
     }
