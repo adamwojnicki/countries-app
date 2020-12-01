@@ -4,21 +4,16 @@
       class="searchbar__input"
       type="text"
       placeholder="Search for countries"
-      v-model="this.searchInput"
-      @keyup="this.onSearch"
+      @keyup="evt => this.$emit('on-search', evt.target.value)"
     />
 
     <select
-      @change="onFilterChange"
+      @change="evt => this.$emit('on-filter-change', this.filter)"
       v-model="this.filter"
       class="searchbar__filter"
     >
       <option value="All">All</option>
-      <option
-        v-for="(region, idx) in clearedRegions"
-        :key="idx"
-        :value="region"
-      >
+      <option v-for="(region, idx) in regions" :key="idx" :value="region">
         {{ region }}
       </option>
     </select>
@@ -34,20 +29,7 @@ export default {
       filter: "All"
     };
   },
-  props: ["regions"],
-  methods: {
-    onSearch() {
-      this.$emit("on-search", this.searchInput);
-    },
-    onFilterChange() {
-      this.$emit("on-filter-change", this.filter);
-    }
-  },
-  computed: {
-    clearedRegions() {
-      return this.regions.filter(reg => reg !== "");
-    }
-  }
+  props: ["regions"]
 };
 </script>
 

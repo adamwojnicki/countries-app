@@ -2,8 +2,8 @@
   <div class="app" :class="theme === 'dark' ? 'dark' : 'light'">
     <Header :theme="this.theme" @theme-toggle="this.handleThemeChange" />
     <SearchBar
-      @on-search="this.handleSearch"
-      @on-filter-change="this.handleFilter"
+      @on-search="searchInput => (this.search = searchInput)"
+      @on-filter-change="filterInput => (this.filter = filterInput)"
       :regions="this.regions"
     />
     <Loading v-if="this.loading" />
@@ -41,18 +41,14 @@ export default {
         const resp = await fetch("https://restcountries.eu/rest/v2/all");
         const data = await resp.json();
         this.countries = data;
-        this.regions = [...new Set(data.map(country => country.region))];
+        this.regions = [...new Set(data.map(country => country.region))].filter(
+          reg => reg !== ""
+        );
       } catch (error) {
         this.error = error.message;
       } finally {
         this.loading = false;
       }
-    },
-    handleSearch(searchInput) {
-      this.search = searchInput;
-    },
-    handleFilter(filterInput) {
-      this.filter = filterInput;
     },
     handleThemeChange() {
       this.theme === "light" ? (this.theme = "dark") : (this.theme = "light");
