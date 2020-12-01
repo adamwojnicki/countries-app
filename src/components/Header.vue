@@ -4,7 +4,6 @@
       <h1 class="header__brand">Country App</h1>
       <nav class="header__nav">
         <div class="header__mode-switch">ModeSwitch(TBD)</div>
-        <div class="header__filter-menu">FilterMenu(TBD)</div>
       </nav>
     </div>
   </header>
@@ -33,7 +32,6 @@ export default {
   }
   &__nav {
     display: flex;
-    width: 20%;
     justify-content: space-between;
     align-items: center;
   }

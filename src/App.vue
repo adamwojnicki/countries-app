@@ -1,11 +1,15 @@
 <template>
   <div>
     <Header />
-    <SearchBar @on-search="this.handleSearch" />
+    <SearchBar
+      @on-search="this.handleSearch"
+      @on-filter-change="this.handleFilter"
+      :regions="this.regions"
+    />
     <Loading v-if="this.loading" />
     <Error v-if="this.error" :message="this.error" />
     <CountryList
-      v-if="this.loading == -false"
+      v-if="this.loading === false"
       :countries="this.filteredCountries"
     />
   </div>
@@ -23,6 +27,7 @@ export default {
   data() {
     return {
       countries: [],
+      regions: [],
       search: "",
       error: null,
       loading: true
@@ -34,6 +39,7 @@ export default {
         const resp = await fetch("https://restcountries.eu/rest/v2/all");
         const data = await resp.json();
         this.countries = data;
+        this.regions = [...new Set(data.map(country => country.region))];
       } catch (error) {
         this.error = error.message;
       } finally {
@@ -42,6 +48,9 @@ export default {
     },
     handleSearch(searchInput) {
       this.search = searchInput;
+    },
+    handleFilter(filter) {
+      console.log(filter);
     }
   },
   computed: {

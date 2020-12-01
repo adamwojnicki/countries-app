@@ -4,9 +4,24 @@
       class="searchbar__input"
       type="text"
       placeholder="Search for countries"
-      v-model="searchInput"
+      v-model="this.searchInput"
       @keyup="this.onSearch"
     />
+
+    <select
+      @change="onFilterChange"
+      v-model="this.filter"
+      class="searchbar__filter"
+    >
+      <option value="All">All</option>
+      <option
+        v-for="(region, idx) in clearedRegions"
+        :key="idx"
+        :value="region"
+      >
+        {{ region }}
+      </option>
+    </select>
   </div>
 </template>
 
@@ -15,12 +30,22 @@ export default {
   name: "SearchBar",
   data() {
     return {
-      searchInput: ""
+      searchInput: "",
+      filter: "All"
     };
   },
+  props: ["regions"],
   methods: {
     onSearch() {
       this.$emit("on-search", this.searchInput);
+    },
+    onFilterChange() {
+      this.$emit("on-filter-change", this.filter);
+    }
+  },
+  computed: {
+    clearedRegions() {
+      return this.regions.filter(reg => reg !== "");
     }
   }
 };
@@ -30,15 +55,20 @@ export default {
 .searchbar {
   width: 90%;
   max-width: 1440px;
-  margin: auto;
-  text-align: center;
-  &__input {
+  margin: 2rem auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &__input,
+  &__filter {
     font-size: 1.7rem;
     padding: 1rem 1.5rem;
     border: none;
-    margin: 2rem auto;
     background: transparent;
     border-bottom: 2px solid #cacaca;
+  }
+  &__input {
+    margin-right: 12px;
   }
 }
 </style>
