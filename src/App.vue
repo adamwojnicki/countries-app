@@ -62,7 +62,7 @@ export default {
         return this.countries.filter(
           country =>
             country.name.toLowerCase().includes(this.search.toLowerCase()) &&
-            country.region === this.filter
+            (country.region === this.filter || this.filter === "All")
         );
       }
     }
