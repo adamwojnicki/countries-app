@@ -2,8 +2,9 @@
   <div id="app">
     <Header />
     <SearchBar @on-search="this.handleSearch" />
-    <div v-if="this.error">An error occrurred</div>
-    <CountryList :countries="this.filteredCountries" />
+    <Error v-if="this.error" :message="this.error" />
+    <Loading v-if="this.loading" :message="this.error" />
+    <CountryList v-else :countries="this.filteredCountries" />
   </div>
 </template>
 
@@ -11,14 +12,17 @@
 import CountryList from "./components/CountryList";
 import Header from "./components/Header";
 import SearchBar from "./components/SearchBar";
+import Error from "./components/Error";
+import Loading from './components/Loading'
 export default {
   name: "App",
-  components: { Header, CountryList, SearchBar },
+  components: { Header, CountryList, SearchBar, Error },
   data() {
     return {
       countries: [],
       search: "",
-      error: null
+      error: null,
+      loading: true
     };
   },
   methods: {
@@ -28,7 +32,6 @@ export default {
         const data = await resp.json();
         this.countries = data;
       } catch (error) {
-        console.error(error);
         this.error = error.message;
       }
     },
