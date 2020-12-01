@@ -5,7 +5,7 @@
     <Loading v-if="this.loading" />
     <Error v-if="this.error" :message="this.error" />
     <CountryList
-      v-if="this.countries.length !== 0"
+      v-if="this.loading == -false"
       :countries="this.filteredCountries"
     />
   </div>
@@ -36,6 +36,8 @@ export default {
         this.countries = data;
       } catch (error) {
         this.error = error.message;
+      } finally {
+        this.loading = false;
       }
     },
     handleSearch(searchInput) {
@@ -53,9 +55,8 @@ export default {
       }
     }
   },
-  mounted() {
+  created() {
     this.fetchCountries();
-    this.loading = false;
   }
 };
 </script>
