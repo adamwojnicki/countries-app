@@ -2,6 +2,7 @@
   <div id="app">
     <Header />
     <SearchBar @on-search="this.handleSearch" />
+    <div v-if="this.error">An error occrurred</div>
     <CountryList :countries="this.filteredCountries" />
   </div>
 </template>
@@ -16,14 +17,20 @@ export default {
   data() {
     return {
       countries: [],
-      search: ""
+      search: "",
+      error: null
     };
   },
   methods: {
     async fetchCountries() {
-      const resp = await fetch("https://restcountries.eu/rest/v2/all");
-      const data = await resp.json();
-      this.countries = data;
+      try {
+        const resp = await fetch("https://restcountries.eu/rest/v2/all");
+        const data = await resp.json();
+        this.countries = data;
+      } catch (error) {
+        console.error(error);
+        this.error = error.message;
+      }
     },
     handleSearch(searchInput) {
       this.search = searchInput;
