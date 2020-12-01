@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Header />
-    <SearchBar @on-search="handleSearch" />
+    <SearchBar @on-search="this.handleSearch" />
     <CountryList :countries="this.filteredCountries" />
   </div>
 </template>
@@ -15,8 +15,8 @@ export default {
   components: { Header, CountryList, SearchBar },
   data() {
     return {
-      countries: null,
-      filteredCountries: null
+      countries: [],
+      search: ""
     };
   },
   methods: {
@@ -26,10 +26,18 @@ export default {
       this.countries = data;
     },
     handleSearch(searchInput) {
-      console.log(searchInput);
-      this.filteredCountries = this.countries.filter((country) =>
-        country.name.includes(searchInput)
-      );
+      this.search = searchInput;
+    }
+  },
+  computed: {
+    filteredCountries() {
+      if (this.search === "") {
+        return this.countries;
+      } else {
+        return this.countries.filter((country) =>
+          country.name.toLowerCase().includes(this.search.toLowerCase())
+        );
+      }
     }
   },
   created() {
