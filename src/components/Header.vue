@@ -3,23 +3,21 @@
     <div class="header-container">
       <h1 class="header__brand">Country App</h1>
       <nav class="header__nav">
-        <div class="header__mode-switch">
-          <button @click="this.onThemeChange">Change color theme</button>
-        </div>
+        <ThemeToggle
+          :theme="this.theme"
+          @theme-toggle="$emit('theme-toggle')"
+        />
       </nav>
     </div>
   </header>
 </template>
 
 <script>
+import ThemeToggle from "./ThemeToggle";
 export default {
   name: "Header",
   props: ["theme"],
-  methods: {
-    onThemeChange() {
-      this.$emit("on-theme-change", this.theme === "light" ? "dark" : "light");
-    }
-  }
+  components: { ThemeToggle }
 };
 </script>
 

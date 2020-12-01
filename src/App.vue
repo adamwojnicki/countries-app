@@ -1,6 +1,6 @@
 <template>
   <div class="app" :class="theme === 'dark' ? 'dark' : 'light'">
-    <Header :theme="this.theme" @on-theme-change="this.handleThemeChange" />
+    <Header :theme="this.theme" @theme-toggle="this.handleThemeChange" />
     <SearchBar
       @on-search="this.handleSearch"
       @on-filter-change="this.handleFilter"
@@ -54,8 +54,8 @@ export default {
     handleFilter(filterInput) {
       this.filter = filterInput;
     },
-    handleThemeChange(themeInput) {
-      this.theme = themeInput;
+    handleThemeChange() {
+      this.theme === "light" ? (this.theme = "dark") : (this.theme = "light");
     }
   },
   computed: {
@@ -93,6 +93,7 @@ export default {
 .app {
   font-family: var(--sans-serif);
   min-height: 100vh;
+  transition: background 0.4s;
 }
 .app.light {
   background: var(--color-light);
