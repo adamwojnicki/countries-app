@@ -1,6 +1,6 @@
 <template>
   <div class="app" :class="theme === 'dark' ? 'dark' : 'light'">
-    <Header />
+    <Header :theme="this.theme" @on-theme-change="this.handleThemeChange" />
     <SearchBar
       @on-search="this.handleSearch"
       @on-filter-change="this.handleFilter"
@@ -32,7 +32,7 @@ export default {
       filter: "All",
       error: null,
       loading: true,
-      theme: "dark"
+      theme: "light"
     };
   },
   methods: {
@@ -53,6 +53,9 @@ export default {
     },
     handleFilter(filterInput) {
       this.filter = filterInput;
+    },
+    handleThemeChange(themeInput) {
+      this.theme = themeInput;
     }
   },
   computed: {

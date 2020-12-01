@@ -3,7 +3,9 @@
     <div class="header-container">
       <h1 class="header__brand">Country App</h1>
       <nav class="header__nav">
-        <div class="header__mode-switch">ModeSwitch(TBD)</div>
+        <div class="header__mode-switch">
+          <button @click="this.onThemeChange">Change color theme</button>
+        </div>
       </nav>
     </div>
   </header>
@@ -11,7 +13,13 @@
 
 <script>
 export default {
-  name: "Header"
+  name: "Header",
+  props: ["theme"],
+  methods: {
+    onThemeChange() {
+      this.$emit("on-theme-change", this.theme === "light" ? "dark" : "light");
+    }
+  }
 };
 </script>
 
