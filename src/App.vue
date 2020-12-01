@@ -1,10 +1,13 @@
 <template>
-  <div id="app">
+  <div>
     <Header />
     <SearchBar @on-search="this.handleSearch" />
+    <Loading v-if="this.loading" />
     <Error v-if="this.error" :message="this.error" />
-    <Loading v-if="this.loading" :message="this.error" />
-    <CountryList v-else :countries="this.filteredCountries" />
+    <CountryList
+      v-if="this.countries.length !== 0"
+      :countries="this.filteredCountries"
+    />
   </div>
 </template>
 
@@ -13,10 +16,10 @@ import CountryList from "./components/CountryList";
 import Header from "./components/Header";
 import SearchBar from "./components/SearchBar";
 import Error from "./components/Error";
-import Loading from './components/Loading'
+import Loading from "./components/Loading";
 export default {
   name: "App",
-  components: { Header, CountryList, SearchBar, Error },
+  components: { Header, CountryList, SearchBar, Error, Loading },
   data() {
     return {
       countries: [],
@@ -50,8 +53,9 @@ export default {
       }
     }
   },
-  created() {
+  mounted() {
     this.fetchCountries();
+    this.loading = false;
   }
 };
 </script>
