@@ -74,7 +74,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
 :root {
   font-size: 10px;
@@ -89,6 +89,7 @@ export default {
 }
 .app {
   font-family: var(--sans-serif);
+  min-height: 100vh;
 }
 .app.light {
   background: var(--color-light);
@@ -97,5 +98,10 @@ export default {
 .app.dark {
   background: var(--color-dark);
   color: var(--color-light);
+  input[type="text"],
+  select {
+    color: var(--color-light);
+    background: var(--color-dark);
+  }
 }
 </style>

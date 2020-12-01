@@ -66,6 +66,7 @@ export default {
     border: none;
     background: transparent;
     border-bottom: 2px solid #cacaca;
+    outline: none;
   }
   &__input {
     margin-right: 12px;
