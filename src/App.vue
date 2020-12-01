@@ -34,7 +34,7 @@ export default {
       if (this.search === "") {
         return this.countries;
       } else {
-        return this.countries.filter((country) =>
+        return this.countries.filter(country =>
           country.name.toLowerCase().includes(this.search.toLowerCase())
         );
       }
