@@ -53,5 +53,10 @@ export default {
   &__input {
     margin-right: 12px;
   }
+  &__filter {
+    -moz-appearance: none;
+    text-indent: 0.01px;
+    text-overflow: "";
+  }
 }
 </style>

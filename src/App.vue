@@ -80,6 +80,9 @@ export default {
   --sans-serif: "Poppins", Arial, Helvetica, sans-serif;
   --color-light: #f4f4f4;
   --color-dark: #232323;
+  @media screen and (max-width: 1050px) {
+    font-size: 8px;
+  }
 }
 * {
   margin: 0;

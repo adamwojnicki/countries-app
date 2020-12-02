@@ -27,7 +27,6 @@ export default {
 
 <style lang="scss">
 .country-card {
-  max-width: 250px;
   border-radius: 6px;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.125);
   margin: 21px;
