@@ -4,7 +4,7 @@
       <input
         type="checkbox"
         :checked="this.theme === 'dark' ? 'checked' : false"
-        @change="$emit('theme-toggle')"
+        @change="this.changeTheme()"
       />
       <span class="toggler round"></span>
     </label>
@@ -12,9 +12,11 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from "vuex";
 export default {
   name: "ThemeToggle",
-  props: ["theme"]
+  computed: mapGetters(["theme"]),
+  methods: mapActions(["changeTheme"])
 };
 </script>
 

@@ -1,6 +1,6 @@
 <template>
   <div class="app" :class="theme === 'dark' ? 'dark' : 'light'">
-    <Header :theme="this.theme" @theme-toggle="this.handleThemeChange" />
+    <Header :theme="this.theme" />
     <SearchBar />
     <Loading v-if="this.loading" />
     <Error v-if="this.error" />
@@ -18,18 +18,13 @@ import Loading from "./components/Loading";
 export default {
   name: "App",
   components: { Header, CountryList, SearchBar, Error, Loading },
-  data() {
-    return {
-      theme: "light"
-    };
-  },
   methods: {
     handleThemeChange() {
       this.theme === "light" ? (this.theme = "dark") : (this.theme = "light");
     }
   },
   computed: {
-    ...mapGetters(["loading", "error"])
+    ...mapGetters(["loading", "error", "theme"])
   }
 };
 </script>

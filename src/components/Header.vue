@@ -3,10 +3,7 @@
     <div class="header-container">
       <h1 class="header__brand">Country App</h1>
       <nav class="header__nav">
-        <ThemeToggle
-          :theme="this.theme"
-          @theme-toggle="$emit('theme-toggle')"
-        />
+        <ThemeToggle />
       </nav>
     </div>
   </header>
@@ -16,7 +13,6 @@
 import ThemeToggle from "./ThemeToggle";
 export default {
   name: "Header",
-  props: ["theme"],
   components: { ThemeToggle }
 };
 </script>

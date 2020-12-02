@@ -13,7 +13,7 @@ import { mapGetters, mapActions } from "vuex";
 import CountryCard from "./CountryCard";
 export default {
   name: "CountryList",
-  methods: { ...mapActions(["fetchCountries"]) },
+  methods: mapActions(["fetchCountries"]),
   components: {
     CountryCard
   },
