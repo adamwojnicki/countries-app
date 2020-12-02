@@ -13,7 +13,7 @@
       class="searchbar__filter"
     >
       <option value="All">All</option>
-      <option v-for="(region, idx) in regions" :key="idx" :value="region">
+      <option v-for="(region, idx) in allRegions" :key="idx" :value="region">
         {{ region }}
       </option>
     </select>
@@ -21,6 +21,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   name: "SearchBar",
   data() {
@@ -29,7 +30,8 @@ export default {
       filter: "All"
     };
   },
-  props: ["regions"]
+  props: ["regions"],
+  computed: mapGetters(["allRegions"])
 };
 </script>
 

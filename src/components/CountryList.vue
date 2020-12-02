@@ -1,7 +1,7 @@
 <template>
   <div class="country-list">
     <CountryCard
-      v-for="country in countries"
+      v-for="country in allCountries"
       :key="country"
       :country="country"
     />
@@ -9,12 +9,17 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from "vuex";
 import CountryCard from "./CountryCard";
 export default {
   name: "CountryList",
-  props: ["countries"],
+  methods: { ...mapActions(["fetchCountries"]) },
   components: {
     CountryCard
+  },
+  computed: mapGetters(["allCountries"]),
+  created() {
+    this.fetchCountries();
   }
 };
 </script>
