@@ -2,15 +2,16 @@
   <div class="error">
     <div class="error__content">
       <h2 class="error__headline">Something wrong happened :(</h2>
-      <p class="error__description">{{ this.message }}</p>
+      <p class="error__description">{{ this.error }}</p>
     </div>
   </div>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   name: "Error",
-  props: ["message"]
+  computed: mapGetters(["error"])
 };
 </script>
 

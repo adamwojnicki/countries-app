@@ -1,13 +1,10 @@
 <template>
   <div class="app" :class="theme === 'dark' ? 'dark' : 'light'">
     <Header :theme="this.theme" @theme-toggle="this.handleThemeChange" />
-    <SearchBar
-      @on-search="searchInput => (this.search = searchInput)"
-      @on-filter-change="filterInput => (this.filter = filterInput)"
-    />
+    <SearchBar />
     <Loading v-if="this.loading" />
-    <Error v-if="this.error" :message="this.error" />
-    <CountryList v-if="this.loading === false" />
+    <Error v-if="this.error" />
+    <CountryList />
   </div>
 </template>
 
@@ -23,9 +20,6 @@ export default {
   components: { Header, CountryList, SearchBar, Error, Loading },
   data() {
     return {
-      search: "",
-      filter: "All",
-      error: null,
       theme: "light"
     };
   },
@@ -35,7 +29,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(["loading"])
+    ...mapGetters(["loading", "error"])
   }
 };
 </script>

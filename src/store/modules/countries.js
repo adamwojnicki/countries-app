@@ -3,12 +3,14 @@ const state = {
   regions: [],
   searchInput: "",
   selectedRegion: "All",
-  loading: false
+  loading: true,
+  error: null
 };
 const getters = {
   allCountries: state => state.countries,
   allRegions: state => state.regions,
   loading: state => state.loading,
+  error: state => state.error,
   searchInput: state => state.searchInput,
   selectedRegion: state => state.selectedRegion
 };
@@ -23,20 +25,25 @@ const actions = {
       commit("setCountries", data);
       commit("setRegions", regions);
     } catch (error) {
-      console.log(error);
+      commit("setError", error.message);
     } finally {
       commit("setLoading", false);
     }
   },
   changeSelectedRegion({ commit }, region) {
     commit("setSelectedRegion", region);
+  },
+  changeSearchInput({ commit }, input) {
+    commit("setSearchInput", input);
   }
 };
 const mutations = {
   setCountries: (state, countries) => (state.countries = countries),
   setRegions: (state, regions) => (state.regions = regions),
   setLoading: (state, ld) => (state.loading = ld),
-  setSelectedRegion: (state, payload) => (state.selectedRegion = payload)
+  setError: (state, err) => (state.error = err),
+  setSelectedRegion: (state, payload) => (state.selectedRegion = payload),
+  setSearchInput: (state, payload) => (state.searchInput = payload)
 };
 
 export default {

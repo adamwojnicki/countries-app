@@ -4,7 +4,7 @@
       class="searchbar__input"
       type="text"
       placeholder="Search for countries"
-      @keyup="evt => this.$emit('on-search', evt.target.value)"
+      @keyup="evt => this.changeSearchInput(evt.target.value)"
     />
 
     <select
@@ -23,12 +23,7 @@
 import { mapGetters, mapActions } from "vuex";
 export default {
   name: "SearchBar",
-  data() {
-    return {
-      searchInput: ""
-    };
-  },
-  methods: { ...mapActions(["changeSelectedRegion"]) },
+  methods: { ...mapActions(["changeSelectedRegion", "changeSearchInput"]) },
   computed: mapGetters(["allRegions"])
 };
 </script>
