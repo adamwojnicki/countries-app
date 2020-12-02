@@ -8,8 +8,7 @@
     />
 
     <select
-      @change="evt => this.$emit('on-filter-change', this.filter)"
-      v-model="this.filter"
+      @change="evt => this.changeSelectedRegion(evt.target.value)"
       class="searchbar__filter"
     >
       <option value="All">All</option>
@@ -21,16 +20,15 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 export default {
   name: "SearchBar",
   data() {
     return {
-      searchInput: "",
-      filter: "All"
+      searchInput: ""
     };
   },
-  props: ["regions"],
+  methods: { ...mapActions(["changeSelectedRegion"]) },
   computed: mapGetters(["allRegions"])
 };
 </script>

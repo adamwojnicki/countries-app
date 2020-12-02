@@ -1,7 +1,7 @@
 <template>
   <div class="country-list">
     <CountryCard
-      v-for="country in allCountries"
+      v-for="country in this.filteredCountries"
       :key="country"
       :country="country"
     />
@@ -17,7 +17,23 @@ export default {
   components: {
     CountryCard
   },
-  computed: mapGetters(["allCountries"]),
+  computed: {
+    ...mapGetters(["allCountries", "selectedRegion", "searchInput"]),
+    filteredCountries() {
+      if (this.searchInput === "" && this.selectedRegion === "All") {
+        return this.allCountries;
+      } else {
+        return this.allCountries.filter(
+          country =>
+            country.name
+              .toLowerCase()
+              .includes(this.searchInput.toLowerCase()) &&
+            (country.region === this.selectedRegion ||
+              this.selectedRegion === "All")
+        );
+      }
+    }
+  },
   created() {
     this.fetchCountries();
   }
