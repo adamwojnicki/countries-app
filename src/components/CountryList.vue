@@ -2,7 +2,7 @@
   <div class="country-list">
     <CountryCard
       v-for="country in this.filteredCountries"
-      :key="country"
+      :key="country.name"
       :country="country"
     />
   </div>
@@ -47,7 +47,6 @@ export default {
   margin: auto;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-
   @media screen and (max-width: 850px) {
     grid-template-columns: repeat(2, 1fr);
   }

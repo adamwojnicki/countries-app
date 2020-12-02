@@ -6,13 +6,16 @@
       placeholder="Search for countries"
       @keyup="evt => this.changeSearchInput(evt.target.value)"
     />
-
     <select
       @change="evt => this.changeSelectedRegion(evt.target.value)"
       class="searchbar__filter"
     >
       <option value="All">All</option>
-      <option v-for="(region, idx) in allRegions" :key="idx" :value="region">
+      <option
+        v-for="(region, idx) in this.allRegions"
+        :key="idx"
+        :value="region"
+      >
         {{ region }}
       </option>
     </select>
@@ -23,7 +26,7 @@
 import { mapGetters, mapActions } from "vuex";
 export default {
   name: "SearchBar",
-  methods: { ...mapActions(["changeSelectedRegion", "changeSearchInput"]) },
+  methods: mapActions(["changeSelectedRegion", "changeSearchInput"]),
   computed: mapGetters(["allRegions"])
 };
 </script>
