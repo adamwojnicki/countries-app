@@ -12,6 +12,9 @@ export default createStore({
   actions: {
     changeTheme({ commit }) {
       commit("setTheme");
+    },
+    initialTheme({ commit }) {
+      commit("setThemeFromLocalStorage");
     }
   },
   mutations: {
@@ -21,6 +24,10 @@ export default createStore({
       } else {
         state.theme = "light";
       }
+      window.localStorage.setItem("theme", state.theme);
+    },
+    setThemeFromLocalStorage(state) {
+      state.theme = window.localStorage.getItem("theme");
     }
   },
   modules: {

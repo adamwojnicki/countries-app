@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 import CountryList from "./components/CountryList";
 import Header from "./components/Header";
 import SearchBar from "./components/SearchBar";
@@ -18,8 +18,12 @@ import Loading from "./components/Loading";
 export default {
   name: "App",
   components: { Header, CountryList, SearchBar, Error, Loading },
+  methods: mapActions(["initialTheme"]),
   computed: {
     ...mapGetters(["loading", "error", "theme"])
+  },
+  created() {
+    this.initialTheme();
   }
 };
 </script>
