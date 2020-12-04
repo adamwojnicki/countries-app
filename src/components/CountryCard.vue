@@ -1,21 +1,23 @@
 <template>
-  <div class="country-card">
-    <figure class="country-card__flag">
-      <img :src="this.country.flag" :alt="this.country.name + ' flag'" />
-    </figure>
-    <div class="country-card__info">
-      <h3 class="country-card__headline">{{ this.country.name }}</h3>
-      <p class="country-card__detail" v-if="this.country.population">
-        <strong>Population:</strong> {{ this.country.population }}
-      </p>
-      <p class="country-card__detail" v-if="this.country.region">
-        <strong>Region:</strong> {{ this.country.region }}
-      </p>
-      <p class="country-card__detail" v-if="this.country.capital">
-        <strong>Capital:</strong> {{ this.country.capital }}
-      </p>
+  <router-link :to="{ name: 'Country', params: { name: this.country.name } }">
+    <div class="country-card">
+      <figure class="country-card__flag">
+        <img :src="this.country.flag" :alt="this.country.name + ' flag'" />
+      </figure>
+      <div class="country-card__info">
+        <h3 class="country-card__headline">{{ this.country.name }}</h3>
+        <p class="country-card__detail" v-if="this.country.population">
+          <strong>Population:</strong> {{ this.country.population }}
+        </p>
+        <p class="country-card__detail" v-if="this.country.region">
+          <strong>Region:</strong> {{ this.country.region }}
+        </p>
+        <p class="country-card__detail" v-if="this.country.capital">
+          <strong>Capital:</strong> {{ this.country.capital }}
+        </p>
+      </div>
     </div>
-  </div>
+  </router-link>
 </template>
 
 <script>
