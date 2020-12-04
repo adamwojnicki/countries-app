@@ -38,10 +38,16 @@ export default {
   font-family: var(--sans-serif);
   min-height: 100vh;
   transition: background 0.4s;
+  a {
+    text-decoration: none;
+  }
 }
 .app.light {
   background: var(--color-light);
   color: var(--color-dark);
+  a {
+    color: var(--color-dark);
+  }
 }
 .app.dark {
   background: var(--color-dark);
@@ -50,6 +56,9 @@ export default {
   select {
     color: var(--color-light);
     background: var(--color-dark);
+  }
+  a {
+    color: var(--color-light);
   }
 }
 </style>
