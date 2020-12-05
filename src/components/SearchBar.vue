@@ -5,9 +5,11 @@
       type="text"
       placeholder="Search for countries"
       @keyup="evt => this.changeSearchInput(evt.target.value)"
+      :value="this.searchInput"
     />
     <select
       @change="evt => this.changeSelectedRegion(evt.target.value)"
+      :value="this.selectedRegion"
       class="searchbar__filter"
     >
       <option value="All">All</option>
@@ -27,7 +29,7 @@ import { mapGetters, mapActions } from "vuex";
 export default {
   name: "SearchBar",
   methods: mapActions(["changeSelectedRegion", "changeSearchInput"]),
-  computed: mapGetters(["allRegions"])
+  computed: mapGetters(["allRegions", "searchInput", "selectedRegion"])
 };
 </script>
 
