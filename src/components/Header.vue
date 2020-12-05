@@ -1,7 +1,9 @@
 <template>
   <header class="header">
     <div class="header-container">
-      <h1 class="header__brand">Country App</h1>
+      <h1 class="header__brand">
+        <router-link :to="{ name: 'Home' }">Country App</router-link>
+      </h1>
       <nav class="header__nav">
         <ThemeToggle />
       </nav>
