@@ -13,7 +13,7 @@
               <strong>Native Name: </strong>{{ this.sglCountry.nativeName }}
             </li>
             <li class="info-list__item">
-              <strong>Poplation </strong>{{ this.sglCountry.population }}
+              <strong>Poplation: </strong>{{ this.sglCountry.population }}
             </li>
             <li class="info-list__item">
               <strong>Region: </strong>{{ this.sglCountry.region }}
@@ -28,12 +28,15 @@
           <ul class="info-list">
             <li class="info-list__item">
               <strong>Top Level Domain: </strong>
+              {{ this.cdomains }}
             </li>
             <li class="info-list__item">
               <strong>Currencies: </strong>
+              {{ this.ccurrencies }}
             </li>
             <li class="info-list__item">
               <strong>Languages: </strong>
+              {{ this.clanguages }}
             </li>
           </ul>
         </div>
@@ -46,7 +49,10 @@ export default {
   name: "Country",
   data() {
     return {
-      sglCountry: {}
+      sglCountry: {},
+      domains: [],
+      currencies: [],
+      languages: []
     };
   },
   methods: {
@@ -56,26 +62,34 @@ export default {
       );
       const data = await resp.json();
       this.sglCountry = data[0];
+      this.domains = data[0].topLevelDomain;
+      this.currencies = data[0].currencies;
+      this.languages = data[0].languages;
     }
   },
   created() {
     this.fetchCountry();
+  },
+  computed: {
+    cdomains() {
+      let txtDomains = "";
+      this.domains.forEach(dom => (txtDomains += `${dom} `));
+      return txtDomains;
+    },
+    ccurrencies() {
+      let txtCurrencies = "";
+      this.currencies.forEach(curr => (txtCurrencies += `${curr.name} `));
+      return txtCurrencies;
+    },
+    clanguages() {
+      let txtLanguages = "";
+      this.languages.forEach(lang => (txtLanguages += `${lang.name} `));
+      return txtLanguages;
+    }
   }
 };
 </script>
 <style lang="scss">
-.button {
-  font-size: 1.8rem;
-  padding: 0.6rem 3.6rem;
-  display: inline-block;
-  margin: 24px 0;
-  background: #131313;
-  transition: filter 0.4s ease-in-out;
-  border-radius: 6px;
-  &:hover {
-    filter: brightness(120%);
-  }
-}
 .country {
   max-width: 1440px;
   width: 90%;
@@ -92,6 +106,14 @@ export default {
   &__info {
     width: 70%;
     padding: 0 24px;
+    font-size: 1.6rem;
+    .info-list {
+      list-style-type: none;
+      margin-right: 32px;
+      &__item {
+        margin-bottom: 12px;
+      }
+    }
   }
   &__name {
     font-size: 4.8rem;
