@@ -7,7 +7,8 @@
       <div class="country-card__info">
         <h3 class="country-card__headline">{{ this.country.name }}</h3>
         <p class="country-card__detail" v-if="this.country.population">
-          <strong>Population:</strong> {{ this.country.population }}
+          <strong>Population:</strong>
+          {{ Number(this.country.population).toLocaleString("en-US") }}
         </p>
         <p class="country-card__detail" v-if="this.country.region">
           <strong>Region:</strong> {{ this.country.region }}

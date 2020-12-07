@@ -10,19 +10,24 @@
         <div class="flex-wrap">
           <ul class="info-list">
             <li class="info-list__item">
-              <strong>Native Name: </strong>{{ this.sglCountry.nativeName }}
+              <strong>Native Name: </strong>
+              {{ this.sglCountry.nativeName }}
             </li>
             <li class="info-list__item">
-              <strong>Poplation: </strong>{{ this.sglCountry.population }}
+              <strong>Popluation: </strong>
+              {{ Number(this.sglCountry.population).toLocaleString("en-US") }}
             </li>
             <li class="info-list__item">
-              <strong>Region: </strong>{{ this.sglCountry.region }}
+              <strong>Region: </strong>
+              {{ this.sglCountry.region }}
             </li>
             <li class="info-list__item">
-              <strong>Sub Region: </strong>{{ this.sglCountry.subregion }}
+              <strong>Sub Region: </strong>
+              {{ this.sglCountry.subregion }}
             </li>
             <li class="info-list__item">
-              <strong>Capital: </strong>{{ this.sglCountry.capital }}
+              <strong>Capital: </strong>
+              {{ this.sglCountry.capital }}
             </li>
           </ul>
           <ul class="info-list">
@@ -72,19 +77,17 @@ export default {
   },
   computed: {
     cdomains() {
-      let txtDomains = "";
-      this.domains.forEach(dom => (txtDomains += `${dom} `));
-      return txtDomains;
+      return this.domains.join(", ");
     },
     ccurrencies() {
-      let txtCurrencies = "";
-      this.currencies.forEach(curr => (txtCurrencies += `${curr.name} `));
-      return txtCurrencies;
+      let arrCurrencies = [];
+      this.currencies.map(curr => arrCurrencies.push(curr.name));
+      return arrCurrencies.join(", ");
     },
     clanguages() {
-      let txtLanguages = "";
-      this.languages.forEach(lang => (txtLanguages += `${lang.name} `));
-      return txtLanguages;
+      let arrLanguages = [];
+      this.languages.map(lang => arrLanguages.push(lang.name));
+      return arrLanguages.join(", ");
     }
   }
 };
