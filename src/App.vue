@@ -41,12 +41,26 @@ export default {
   a {
     text-decoration: none;
   }
+  .button {
+    font-size: 1.8rem;
+    padding: 0.6rem 3.6rem;
+    display: inline-block;
+    margin: 24px 0;
+    transition: filter 0.4s ease-in-out;
+    border-radius: 6px;
+  }
 }
 .app.light {
   background: var(--color-light);
   color: var(--color-dark);
   a {
     color: var(--color-dark);
+  }
+  .button {
+    background: #cacaca;
+    &:hover {
+      filter: brightness(80%);
+    }
   }
 }
 .app.dark {
@@ -59,6 +73,12 @@ export default {
   }
   a {
     color: var(--color-light);
+  }
+  .button {
+    background: #131313;
+    &:hover {
+      filter: brightness(120%);
+    }
   }
 }
 </style>
