@@ -4,6 +4,9 @@ Allows to browse through countries from all around the world, access most import
 
 Built with VueJS v3
 
+Live demo available here:
+[my-countries-app.netlify.app](https://my-countries-app.netlify.app/)
+
 ## Project setup
 
 ```
