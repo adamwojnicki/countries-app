@@ -1,7 +1,7 @@
 <template>
   <div class="country">
     <router-link class="button" :to="{ name: 'Home' }">Back</router-link>
-    <div class="flex-wrap">
+    <div class="flex-wrap main">
       <figure class="country__flag">
         <img :src="this.sglCountry.flag" :alt="this.sglCountry.name" />
       </figure>
@@ -99,9 +99,18 @@ export default {
   margin: auto;
   .flex-wrap {
     display: flex;
+    @media screen and (max-width: 650px) {
+      &.main {
+        flex-direction: column;
+      }
+    }
   }
   &__flag {
     width: 30%;
+    @media screen and (max-width: 650px) {
+      width: 100%;
+      margin: auto;
+    }
     img {
       width: 100%;
     }
@@ -110,6 +119,16 @@ export default {
     width: 70%;
     padding: 0 24px;
     font-size: 1.6rem;
+    @media screen and (max-width: 650px) {
+      width: 100%;
+      margin: auto;
+      padding: 0;
+    }
+    @media screen and (max-width: 460px) {
+      .flex-wrap {
+        flex-direction: column;
+      }
+    }
     .info-list {
       list-style-type: none;
       margin-right: 32px;
@@ -120,6 +139,7 @@ export default {
   }
   &__name {
     font-size: 4.8rem;
+    margin-bottom: 32px;
   }
 }
 </style>
