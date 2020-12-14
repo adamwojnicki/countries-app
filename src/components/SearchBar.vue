@@ -6,17 +6,20 @@
       placeholder="Search for countries"
       @keyup="evt => this.changeSearchInput(evt.target.value)"
       :value="this.searchInput"
+      aria-label="Search for countries"
     />
     <select
       @change="evt => this.changeSelectedRegion(evt.target.value)"
       :value="this.selectedRegion"
       class="searchbar__filter"
+      aria-label="Select region"
     >
-      <option value="All">All</option>
+      <option value="All" aria-label="All">All</option>
       <option
         v-for="(region, idx) in this.allRegions"
         :key="idx"
         :value="region"
+        :aria-label="region"
       >
         {{ region }}
       </option>
