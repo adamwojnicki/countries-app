@@ -32,7 +32,6 @@ export default {
 .country-card {
   border-radius: 6px;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.125);
-  margin: 21px;
   overflow: hidden;
   &__flag {
     width: 100%;
@@ -48,7 +47,7 @@ export default {
     margin-bottom: 1.5rem;
   }
   &__detail {
-    font-size: 1.4rem;
+    font-size: 1.7rem;
     margin-top: 0.6rem;
   }
 }
