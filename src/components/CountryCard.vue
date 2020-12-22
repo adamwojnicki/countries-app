@@ -5,7 +5,7 @@
         <img :src="this.country.flag" :alt="this.country.name + ' flag'" />
       </figure>
       <div class="country-card__info">
-        <h3 class="country-card__headline">{{ this.country.name }}</h3>
+        <h2 class="country-card__headline">{{ this.country.name }}</h2>
         <p class="country-card__detail" v-if="this.country.population">
           <strong>Population:</strong>
           {{ Number(this.country.population).toLocaleString("en-US") }}
