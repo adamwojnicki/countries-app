@@ -1,7 +1,10 @@
 <template>
   <div class="country">
-    <router-link class="button" :to="{ name: 'Home' }">Back</router-link>
-    <div class="flex-wrap main">
+    <Loading v-if="this.loading" />
+    <router-link class="button" :to="{ name: 'Home' }" v-if="!this.loading">
+      Back
+    </router-link>
+    <div class="flex-wrap main" v-if="!this.loading">
       <figure class="country__flag">
         <img :src="this.sglCountry.flag" :alt="this.sglCountry.name" />
       </figure>
@@ -50,14 +53,17 @@
   </div>
 </template>
 <script>
+import Loading from "@/components/Loading";
 export default {
   name: "Country",
+  components: { Loading },
   data() {
     return {
       sglCountry: {},
       domains: [],
       currencies: [],
-      languages: []
+      languages: [],
+      loading: true
     };
   },
   methods: {
@@ -70,6 +76,7 @@ export default {
       this.domains = data[0].topLevelDomain;
       this.currencies = data[0].currencies;
       this.languages = data[0].languages;
+      this.loading = false;
     }
   },
   created() {
