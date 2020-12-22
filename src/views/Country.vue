@@ -1,6 +1,7 @@
 <template>
   <div class="country">
     <Loading v-if="this.loading" />
+    <Error v-if="this.error" />
     <router-link class="button" :to="{ name: 'Home' }" v-if="!this.loading">
       Back
     </router-link>
@@ -54,29 +55,36 @@
 </template>
 <script>
 import Loading from "@/components/Loading";
+import Error from "@/components/Error";
 export default {
   name: "Country",
-  components: { Loading },
+  components: { Loading, Error },
   data() {
     return {
       sglCountry: {},
       domains: [],
       currencies: [],
       languages: [],
-      loading: true
+      loading: true,
+      error: null
     };
   },
   methods: {
     async fetchCountry() {
-      const resp = await fetch(
-        `https://restcountries.eu/rest/v2/name/${this.$route.params.name}`
-      );
-      const data = await resp.json();
-      this.sglCountry = data[0];
-      this.domains = data[0].topLevelDomain;
-      this.currencies = data[0].currencies;
-      this.languages = data[0].languages;
-      this.loading = false;
+      try {
+        const resp = await fetch(
+          `https://restcountries.eu/rest/v2/name/${this.$route.params.name}`
+        );
+        const data = await resp.json();
+        this.sglCountry = data[0];
+        this.domains = data[0].topLevelDomain;
+        this.currencies = data[0].currencies;
+        this.languages = data[0].languages;
+      } catch (err) {
+        this.error = err;
+      } finally {
+        this.loading = false;
+      }
     }
   },
   created() {
