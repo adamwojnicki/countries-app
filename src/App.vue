@@ -2,15 +2,17 @@
   <div class="app" :class="this.theme === 'dark' ? 'dark' : 'light'">
     <Header />
     <router-view />
+    <Footer />
   </div>
 </template>
 <script>
 import { mapActions, mapGetters } from "vuex";
 import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 export default {
   name: "App",
-  components: { Header },
+  components: { Header, Footer },
   methods: mapActions(["initialTheme"]),
   computed: mapGetters(["theme"]),
   created() {
@@ -38,6 +40,8 @@ export default {
   font-family: var(--sans-serif);
   min-height: 100vh;
   transition: background 0.4s;
+  position: relative;
+  padding-bottom: 100px;
   a {
     text-decoration: none;
   }
