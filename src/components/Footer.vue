@@ -1,12 +1,21 @@
 <template>
   <footer class="footer">
-    <p class="footer__content">2020 Adam Wojnicki</p>
+    <p class="footer__content">{{ this.year }} Adam Wojnicki</p>
   </footer>
 </template>
 
 <script>
 export default {
-  name: "Footer"
+  name: "Footer",
+  data() {
+    return {
+      year: null
+    };
+  },
+  created() {
+    const now = new Date();
+    this.year = now.getFullYear();
+  }
 };
 </script>
 
