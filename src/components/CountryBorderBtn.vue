@@ -1,5 +1,10 @@
 <template>
-  <a href="/" class="button">{{ border }}</a>
+  <router-link
+    :to="{ name: 'Country', params: { name: this.border } }"
+    class="button"
+  >
+    {{ this.border }}
+  </router-link>
 </template>
 
 <script>

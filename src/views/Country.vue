@@ -32,6 +32,11 @@ export default {
     this.sglCountry = this.countries.countries.find(
       country => country.name === this.$route.params.name
     );
+  },
+  updated() {
+    this.sglCountry = this.countries.countries.find(
+      country => country.name === this.$route.params.name
+    );
   }
 };
 </script>
