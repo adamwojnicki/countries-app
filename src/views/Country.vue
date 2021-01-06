@@ -10,6 +10,7 @@
         <img :src="this.sglCountry.flag" :alt="this.sglCountry.name" />
       </figure>
       <CountryInfo :sglCountry="this.sglCountry" />
+      <CountryBorders />
     </div>
   </div>
 </template>
@@ -18,9 +19,10 @@ import { mapState } from "vuex";
 import Loading from "@/components/Loading";
 import Error from "@/components/Error";
 import CountryInfo from "@/components/CountryInfo";
+import CountryBorders from "@/components/CountryBorders";
 export default {
   name: "Country",
-  components: { Loading, Error, CountryInfo },
+  components: { Loading, Error, CountryInfo, CountryBorders },
   data() {
     return {
       sglCountry: {},
