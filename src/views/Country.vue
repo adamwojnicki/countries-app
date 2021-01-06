@@ -1,10 +1,8 @@
 <template>
   <div class="country">
     <Error v-if="this.error" />
-    <router-link class="button" :to="{ name: 'Home' }" v-if="!this.loading">
-      Back
-    </router-link>
-    <div class="flex-wrap main" v-if="!this.loading">
+    <router-link class="button" :to="{ name: 'Home' }"> Back </router-link>
+    <div class="flex-wrap main">
       <figure class="country__flag">
         <img :src="this.sglCountry.flag" :alt="this.sglCountry.name" />
       </figure>

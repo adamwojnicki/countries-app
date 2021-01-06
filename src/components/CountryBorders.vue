@@ -1,6 +1,8 @@
 <template>
   <div class="country-borders">
-    <h3 class="country-borders__headline">Nearby countries:</h3>
+    <h3 class="country-borders__headline" v-if="this.borders.length > 0">
+      Nearby countries:
+    </h3>
     <CountryBorderBtn
       v-for="border in this.countryNames"
       :key="border"
@@ -26,9 +28,6 @@ export default {
           ).name
       );
     }
-  },
-  created() {
-    console.log(this.countryNames);
   }
 };
 </script>
