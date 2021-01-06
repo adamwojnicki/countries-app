@@ -1,8 +1,11 @@
-<template>CountryBorders</template>
+<template>
+  <p v-for="border in borders" :key="border">{{ border }}</p>
+</template>
 
 <script>
 export default {
-  name: "CountryBorders"
+  name: "CountryBorders",
+  props: ["borders"]
 };
 </script>
 

@@ -10,7 +10,7 @@
         <img :src="this.sglCountry.flag" :alt="this.sglCountry.name" />
       </figure>
       <CountryInfo :sglCountry="this.sglCountry" />
-      <CountryBorders />
+      <CountryBorders :borders="this.sglCountry.borders" />
     </div>
   </div>
 </template>
