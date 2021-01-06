@@ -1,6 +1,5 @@
 <template>
   <div class="country">
-    <Loading v-if="this.loading" />
     <Error v-if="this.error" />
     <router-link class="button" :to="{ name: 'Home' }" v-if="!this.loading">
       Back
@@ -9,41 +8,35 @@
       <figure class="country__flag">
         <img :src="this.sglCountry.flag" :alt="this.sglCountry.name" />
       </figure>
-      <CountryInfo :sglCountry="this.sglCountry" />
+      <CountryInfo :sglCountry="this.sglCountry" /><br />
+      <CountryBorders :borders="this.sglCountry.borders" />
     </div>
   </div>
 </template>
 <script>
-import Loading from "@/components/Loading";
+import { mapState } from "vuex";
 import Error from "@/components/Error";
 import CountryInfo from "@/components/CountryInfo";
+import CountryBorders from "@/components/CountryBorders";
 export default {
   name: "Country",
-  components: { Loading, Error, CountryInfo },
+  components: { Error, CountryInfo, CountryBorders },
   data() {
     return {
       sglCountry: {},
-      loading: true,
       error: null
     };
   },
-  methods: {
-    async fetchCountry() {
-      try {
-        const resp = await fetch(
-          `https://restcountries.eu/rest/v2/name/${this.$route.params.name}`
-        );
-        const data = await resp.json();
-        this.sglCountry = data[0];
-      } catch (err) {
-        this.error = err;
-      } finally {
-        this.loading = false;
-      }
-    }
-  },
+  computed: mapState(["countries"]),
   created() {
-    this.fetchCountry();
+    this.sglCountry = this.countries.countries.find(
+      country => country.name === this.$route.params.name
+    );
+  },
+  updated() {
+    this.sglCountry = this.countries.countries.find(
+      country => country.name === this.$route.params.name
+    );
   }
 };
 </script>
@@ -54,6 +47,7 @@ export default {
   margin: auto;
   .flex-wrap {
     display: flex;
+    flex-wrap: wrap;
     @media screen and (max-width: 650px) {
       &.main {
         flex-direction: column;
