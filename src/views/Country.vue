@@ -14,6 +14,7 @@
   </div>
 </template>
 <script>
+import { mapState } from "vuex";
 import Loading from "@/components/Loading";
 import Error from "@/components/Error";
 import CountryInfo from "@/components/CountryInfo";
@@ -23,27 +24,14 @@ export default {
   data() {
     return {
       sglCountry: {},
-      loading: true,
       error: null
     };
   },
-  methods: {
-    async fetchCountry() {
-      try {
-        const resp = await fetch(
-          `https://restcountries.eu/rest/v2/name/${this.$route.params.name}`
-        );
-        const data = await resp.json();
-        this.sglCountry = data[0];
-      } catch (err) {
-        this.error = err;
-      } finally {
-        this.loading = false;
-      }
-    }
-  },
+  computed: mapState(["countries"]),
   created() {
-    this.fetchCountry();
+    this.sglCountry = this.countries.countries.find(
+      country => country.name === this.$route.params.name
+    );
   }
 };
 </script>
