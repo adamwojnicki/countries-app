@@ -1,10 +1,12 @@
 <template>
-  <!-- <p v-for="border in borders" :key="border">{{ border }}</p> -->
-  <CountryBorderBtn
-    v-for="border in this.countryNames"
-    :key="border"
-    :border="border"
-  />
+  <div class="country-borders">
+    <h3 class="country-borders__headline">Nearby countries:</h3>
+    <CountryBorderBtn
+      v-for="border in this.countryNames"
+      :key="border"
+      :border="border"
+    />
+  </div>
 </template>
 
 <script>
@@ -31,5 +33,16 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
+.country-borders {
+  margin-top: 3.2rem;
+  &__headline {
+    font-size: 2.4rem;
+  }
+  .button {
+    margin: initial;
+    margin-right: 16px;
+    margin-top: 16px;
+  }
+}
 </style>

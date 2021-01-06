@@ -47,6 +47,7 @@ export default {
   margin: auto;
   .flex-wrap {
     display: flex;
+    flex-wrap: wrap;
     @media screen and (max-width: 650px) {
       &.main {
         flex-direction: column;
