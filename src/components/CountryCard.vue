@@ -1,11 +1,13 @@
 <template>
-  <router-link :to="{ name: 'Country', params: { name: this.country.name } }">
+  <router-link
+    :to="{ name: 'Country', params: { name: this.country.name.common } }"
+  >
     <div class="country-card">
       <figure class="country-card__flag">
-        <img :src="this.country.flag" :alt="this.country.name + ' flag'" />
+        <img :src="this.country.flags.svg" :alt="this.country.name + ' flag'" />
       </figure>
       <div class="country-card__info">
-        <h2 class="country-card__headline">{{ this.country.name }}</h2>
+        <h2 class="country-card__headline">{{ this.country.name.common }}</h2>
         <p class="country-card__detail" v-if="this.country.population">
           <strong>Population:</strong>
           {{ Number(this.country.population).toLocaleString("en-US") }}
@@ -14,7 +16,7 @@
           <strong>Region:</strong> {{ this.country.region }}
         </p>
         <p class="country-card__detail" v-if="this.country.capital">
-          <strong>Capital:</strong> {{ this.country.capital }}
+          <strong>Capital:</strong> {{ this.country.capital[0] }}
         </p>
       </div>
     </div>

@@ -1,12 +1,12 @@
 <template>
   <div class="country-info">
-    <h2 class="country-info__name">{{ this.sglCountry.name }}</h2>
+    <h2 class="country-info__name">{{ this.sglCountry.name.common }}</h2>
     <div class="flex-wrap">
       <ul class="info-list">
-        <li class="info-list__item">
+        <!-- <li class="info-list__item">
           <strong>Native Name: </strong>
-          {{ this.sglCountry.nativeName }}
-        </li>
+          {{ this.sglCountry.name.nativeName[0] }}
+        </li> -->
         <li class="info-list__item">
           <strong>Popluation: </strong>
           {{ Number(this.sglCountry.population).toLocaleString("en-US") }}
@@ -21,22 +21,22 @@
         </li>
         <li class="info-list__item">
           <strong>Capital: </strong>
-          {{ this.sglCountry.capital }}
+          {{ this.sglCountry.capital[0] }}
         </li>
       </ul>
       <ul class="info-list">
-        <li class="info-list__item">
+        <!-- <li class="info-list__item">
           <strong>Top Level Domain: </strong>
-          {{ this.domains }}
-        </li>
-        <li class="info-list__item">
+          {{ this.tld }}
+        </li> -->
+        <!-- <li class="info-list__item">
           <strong>Currencies: </strong>
           {{ this.currencies }}
-        </li>
-        <li class="info-list__item">
+        </li> -->
+        <!-- <li class="info-list__item">
           <strong>Languages: </strong>
           {{ this.languages }}
-        </li>
+        </li> -->
       </ul>
     </div>
   </div>
