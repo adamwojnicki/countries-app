@@ -17,7 +17,7 @@ const getters = {
 const actions = {
   async fetchCountries({ commit }) {
     try {
-      const resp = await fetch("https://restcountries.eu/rest/v2/all");
+      const resp = await fetch("https://restcountries.com/v3.1/all");
       const data = await resp.json();
       const regions = [...new Set(data.map(country => country.region))].filter(
         reg => reg !== ""

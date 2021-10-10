@@ -25,7 +25,7 @@ export default {
       } else {
         return this.allCountries.filter(
           country =>
-            country.name
+            country.name.common
               .toLowerCase()
               .includes(this.searchInput.toLowerCase()) &&
             (country.region === this.selectedRegion ||

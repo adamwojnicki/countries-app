@@ -4,10 +4,13 @@
     <router-link class="button" :to="{ name: 'Home' }"> Back </router-link>
     <div class="flex-wrap main">
       <figure class="country__flag">
-        <img :src="this.sglCountry.flag" :alt="this.sglCountry.name" />
+        <img
+          :src="this.sglCountry.flags.svg"
+          :alt="this.sglCountry.name.common"
+        />
       </figure>
       <CountryInfo :sglCountry="this.sglCountry" /><br />
-      <CountryBorders :borders="this.sglCountry.borders" />
+      <!-- <CountryBorders :borders="this.sglCountry.borders" /> -->
     </div>
   </div>
 </template>
@@ -15,10 +18,10 @@
 import { mapState } from "vuex";
 import Error from "@/components/Error";
 import CountryInfo from "@/components/CountryInfo";
-import CountryBorders from "@/components/CountryBorders";
+// import CountryBorders from "@/components/CountryBorders";
 export default {
   name: "Country",
-  components: { Error, CountryInfo, CountryBorders },
+  components: { Error, CountryInfo },
   data() {
     return {
       sglCountry: {},
@@ -28,12 +31,12 @@ export default {
   computed: mapState(["countries"]),
   created() {
     this.sglCountry = this.countries.countries.find(
-      country => country.name === this.$route.params.name
+      country => country.name.common === this.$route.params.name
     );
   },
   updated() {
     this.sglCountry = this.countries.countries.find(
-      country => country.name === this.$route.params.name
+      country => country.name.common === this.$route.params.name
     );
   }
 };
